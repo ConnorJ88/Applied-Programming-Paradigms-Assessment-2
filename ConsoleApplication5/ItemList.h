@@ -5,7 +5,5 @@ using namespace std;
 class ItemList {
 public:
 	virtual string toString() = 0;
-	vector<Item*> Items;
-private:
-	
+	vector<Item*> Items;	
 };

@@ -22,8 +22,8 @@ void Menu::  load(const string& fileName){
 	}
 	else {
 		Items.clear();
-		
-		while (getline(menu, line)) {//goes through every line
+		//goes through every line
+		while (getline(menu, line)) {
 			stringstream inputString(line);
 			string type;
 			string name;
@@ -34,8 +34,10 @@ void Menu::  load(const string& fileName){
 			int volume;
 			float abv;
 			string tempstring;
-			getline(inputString, type, ',');//checks the type of item
+			//checks the type of item
+			getline(inputString, type, ',');
 			if (type == "a") {
+				//gets all necessary variables for appetiser
 				getline(inputString, name, ',');
 				getline(inputString, tempstring, ',');
 				price = atof(tempstring.c_str());
@@ -60,7 +62,7 @@ void Menu::  load(const string& fileName){
 				{
 					twoForOne = false;
 				}
-				
+				//adds new pointer to Appetiser in Items
 				Items.push_back(new Appetiser(name, price,  calories,  shareable, twoForOne));
 	
 			}
@@ -72,6 +74,7 @@ void Menu::  load(const string& fileName){
 				tempstring = "";
 				getline(inputString, tempstring, ',');
 				calories = atoi(tempstring.c_str());
+				//adds new pointer to MainCourse in Items
 				Items.push_back(new MainCourse(name, price, calories));
 
 			}
@@ -90,6 +93,7 @@ void Menu::  load(const string& fileName){
 				volume = atof(tempstring.c_str());
 				getline(inputString, tempstring, ',');
 				abv = atof(tempstring.c_str());
+				//adds new pointer to Beverages in Items
 				Items.push_back(new Beverage(name, price, calories, volume, abv));
 				
 			}
@@ -107,9 +111,10 @@ string Menu::toString()  {
 	beverage.clear();
 	main.clear();
 	appetiser.clear();
-	
+	//adds items to vectors based on their types 
 	for (int a = 0; a < Items.size(); a++)
 	{
+		//formats each item using their toString function
 		if (Items[a]->itemType() == 'a') {
 			appetiser.push_back("(" + to_string(a + 1) + ")" + Items[a]->toString());		
 			
@@ -123,6 +128,7 @@ string Menu::toString()  {
 		}
 		
 	}
+	//formats the string 'menu' with the items appearing under their category
 	menu += "\t________Appetisers_________\t\n";
 	for (int a = 0; a < appetiser.size(); a++)
 	{		
@@ -142,6 +148,7 @@ string Menu::toString()  {
 	return menu;
 	
 }
+//get the menu item at the specified index
 Item* Menu::getItemIndex(int index)  {
 	if (index >= 0 && index <= Items.size()) {
 		return Items[index];
