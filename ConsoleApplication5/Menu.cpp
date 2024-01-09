@@ -100,6 +100,7 @@ void Menu::  load(const string& fileName){
 				
 			
 		}
+		menu.close();
 	}
 }
 string Menu::toString()  {

@@ -127,6 +127,7 @@ int main()
 						if ( check == "y") {
 							//calls printReceipt function to store receipt in a seperate text file
 							order.printReceipt();
+							break;
 						}
 						else {
 							cout << "Continuing with order";
@@ -161,7 +162,7 @@ int main()
 			parameters.clear();
 		}
 	}
-		
+	
 		
 		
 	//closes the program
